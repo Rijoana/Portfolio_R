@@ -1,0 +1,77 @@
+/* Reset default margins/padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* App container */
+body, html, #root {
+  width: 100%;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Smooth transitions for dark/light mode */
+body {
+  transition: all 0.5s ease;
+}
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Dark mode */
+.dark {
+  background: #222831;
+  color: #EEE;
+}
+
+/* Light mode */
+.light {
+  background: #EEEEEE;
+  color: #222831;
+}
+
+
+/* Glass card */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  transition: 0.3s ease;
+}
+
+.dark .glass {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.glass:hover {
+  transform: translateY(-8px);
+}
+
+/* Animated underline for navbar links */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: inherit; /* takes dark/light mode color */
+  font-weight: bold;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #76ABAE; /* underline color */
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}

@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #76ABAE;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #5a9295;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Scroll Reveal Animation ──────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+section > div {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+/* ── Hamburger button — hidden on desktop ─────────────────────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: #76ABAE;
+  border-radius: 4px;
+  transition: all 0.35s ease;
+}
+
+/* Animate hamburger → X when open */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* ── Mobile slide-in menu ─────────────────────────────────────────────────── */
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  right: 0;
+  background: rgba(241, 239, 236, 0.97);
+  backdrop-filter: blur(16px);
+  border-radius: 16px;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-menu.dark-menu {
+  background: rgba(34, 40, 49, 0.97);
+}
+
+.mobile-menu.open {
+  max-height: 400px;
+  padding: 12px 0;
+  opacity: 1;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 14px 28px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: inherit;
+  border-bottom: 1px solid rgba(118, 171, 174, 0.1);
+  transition: color 0.2s, padding-left 0.2s;
+}
+
+.mobile-menu a:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu a:hover {
+  color: #76ABAE;
+  padding-left: 36px;
+}
+
+.mobile-menu a.active-link {
+  color: #76ABAE;
+  padding-left: 36px;
+}
+
+/* ── Nav links — desktop ──────────────────────────────────────────────────── */
+.nav-links-desktop {
+  display: flex;
+  gap: 20px;
+}
+
+/* ── Animated underline for navbar links ──────────────────────────────────── */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #76ABAE;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ── Hero responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Center hero buttons on mobile */
+
+   div[style*="display: flex"][style*="gap: 1rem"] {
+    justify-content: center !important;
+  }
+
+  
+  /* Show hamburger, hide desktop links */
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links-desktop {
+    display: none !important;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  /* Hero stacks: image on top, text below */
+  #hero > div {
+    flex-direction: column-reverse !important;
+    text-align: center !important;
+    padding: 40px 20px !important;
+    gap: 30px !important;
+  }
+
+  #hero img {
+    width: 180px !important;
+    height: 180px !important;
+  }
+
+  /* Center hero buttons */
+  #hero .flex {
+    justify-content: center !important;
+  }
+
+  /* Full width grids on mobile */
+  section > div > div[style*="grid"] {
+    grid-template-columns: 1fr !important;
+  }
+}
